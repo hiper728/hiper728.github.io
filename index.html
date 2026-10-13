@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leonard Johnson &mdash; Senior Software & Systems Automation Engineer</title>
+  <meta name="description" content="Senior Software Engineer specializing in high-throughput asynchronous backends, resilient automation systems, web scraping pipelines, and distributed bot architectures.">
+  <meta name="author" content="Leonard Johnson">
+  <meta name="theme-color" content="#090d16">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 font-family=%22monospace%22 font-weight=%22bold%22 fill=%22%232563eb%22>LJ</text></svg>">
+  <style>
+    :root {
+      --bg: #090d16;
+      --bg-surface: #0f172a;
+      --bg-card: #131d33;
+      --bg-card-hover: #17243f;
+      --border: #1e293b;
+      --border-accent: #334155;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-subtle: #64748b;
+      --primary: #38bdf8;
+      --primary-dim: rgba(56, 189, 248, 0.12);
+      --accent: #10b981;
+      --accent-dim: rgba(16, 185, 129, 0.12);
+      --terminal-bg: #070a12;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", Helvetica, Arial, sans-serif;
+      --font-mono: "JetBrains Mono", "Fira Code", Consolas, "Courier New", monospace;
+    }
+
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --border: #e2e8f0;
+      --border-accent: #cbd5e1;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --text-subtle: #64748b;
+      --primary: #0284c7;
+      --primary-dim: rgba(2, 132, 199, 0.08);
+      --accent: #059669;
+      --accent-dim: rgba(5, 150, 105, 0.08);
+      --terminal-bg: #1e293b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      min-height: 100vh;
+      transition: background-color 0.2s ease, color 0.2s ease;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* TOP NAVBAR */
+    header.site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background-color: rgba(9, 13, 22, 0.85);
+      border-bottom: 1px solid var(--border);
+      transition: background-color 0.2s ease;
+    }
+    [data-theme="light"] header.site-header {
+      background-color: rgba(248, 250, 252, 0.88);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+    }
+    .brand-badge {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: var(--primary-dim);
+      color: var(--primary);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s ease;
+    }
+    .nav-link:hover, .nav-link:focus {
+      color: var(--text);
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      background: var(--bg-surface);
+      color: var(--text);
+      transition: all 0.15s ease;
+      font-family: var(--font-sans);
+    }
+    .btn:hover, .btn:focus {
+      background: var(--bg-card-hover);
+      border-color: var(--border-accent);
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #04101e;
+      border-color: var(--primary);
+      font-weight: 700;
+    }
+    .btn-primary:hover, .btn-primary:focus {
+      background: #7dd3fc;
+      border-color: #7dd3fc;
+    }
+    .btn-icon {
+      padding: 7px 10px;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      padding: 56px 0 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      background: var(--accent-dim);
+      color: var(--accent);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.9); }
+    }
+    h1.hero-title {
+      font-size: 2.75rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.15;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+    .hero-bio {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 780px;
+      margin-bottom: 28px;
+      line-height: 1.65;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+
+    /* METRIC STATS STRIP */
+    .metric-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .metric-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+    }
+    .metric-val {
+      font-family: var(--font-mono);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+    .metric-lbl {
+      font-size: 0.8rem;
+      color: var(--text-subtle);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 4px;
+    }
+
+    /* VIEW TOGGLE BAR */
+    .view-switch-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 40px 0 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-heading {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .view-tabs {
+      display: flex;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      padding: 3px;
+      border-radius: 6px;
+      gap: 2px;
+    }
+    .view-tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      transition: all 0.15s ease;
+    }
+    .view-tab-btn.active {
+      background: var(--bg-card);
+      color: var(--text);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    /* BENTO GRID */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+      margin-bottom: 50px;
+    }
+    .bento-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.2s ease, transform 0.15s ease;
+    }
+    .bento-card:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-2px);
+    }
+    .card-col-8 { grid-column: span 8; }
+    .card-col-4 { grid-column: span 4; }
+    .card-col-6 { grid-column: span 6; }
+    .card-col-12 { grid-column: span 12; }
+
+    @media (max-width: 900px) {
+      .card-col-8, .card-col-4, .card-col-6 { grid-column: span 12; }
+    }
+
+    .card-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .card-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .card-metrics {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+      padding: 10px 14px;
+      background: var(--bg-card);
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+    .metric-sub-val {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 0.95rem;
+    }
+    .metric-sub-lbl {
+      font-size: 0.75rem;
+      color: var(--text-subtle);
+    }
+    .tech-pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: auto;
+    }
+    .tech-pill {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      background: var(--bg-card);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    /* ARCHITECTURE DIAGRAM BOX */
+    .arch-diagram {
+      background: var(--terminal-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      line-height: 1.45;
+      color: #38bdf8;
+      overflow-x: auto;
+      margin: 12px 0 16px;
+      white-space: pre;
+    }
+
+    /* INTERACTIVE SIMULATOR BENCH */
+    .sim-bench {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px;
+      margin-top: 14px;
+    }
+    .sim-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      color: var(--text-subtle);
+    }
+    .sim-output {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      background: var(--terminal-bg);
+      padding: 10px 12px;
+      border-radius: 4px;
+      min-height: 52px;
+      color: #4ade80;
+      white-space: pre-wrap;
+    }
+
+    /* TECHNICAL SKILLS MATRIX SECTION */
+    .skills-matrix {
+      margin-bottom: 50px;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .skill-category-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .skill-cat-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .skill-list {
+      list-style: none;
+    }
+    .skill-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.86rem;
+      padding: 5px 0;
+      color: var(--text-muted);
+      border-bottom: 1px dashed rgba(148, 163, 184, 0.15);
+    }
+    .skill-item:last-child { border-bottom: none; }
+    .skill-name { font-weight: 500; color: var(--text); }
+    .skill-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--primary);
+    }
+
+    /* EXPERIENCE TIMELINE */
+    .exp-section {
+      margin-bottom: 50px;
+    }
+    .timeline {
+      position: relative;
+      margin-top: 24px;
+      padding-left: 28px;
+      border-left: 2px solid var(--border);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 36px;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: -35px;
+      top: 4px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 3px solid var(--bg);
+    }
+    .exp-title-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4px;
+    }
+    .exp-role {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .exp-period {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-subtle);
+    }
+    .exp-domain {
+      font-size: 0.9rem;
+      color: var(--primary);
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .exp-bullets {
+      list-style: none;
+    }
+    .exp-bullet {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .exp-bullet::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    /* TERMINAL MODE (TOGGLEABLE) */
+    .terminal-container {
+      display: none;
+      background: var(--terminal-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.4);
+      margin-bottom: 50px;
+      overflow: hidden;
+    }
+    .terminal-header {
+      background: #0d121f;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #1e293b;
+    }
+    .term-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .term-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .term-dot-red { background: #ef4444; }
+    .term-dot-yellow { background: #f59e0b; }
+    .term-dot-green { background: #10b981; }
+    .term-title {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: #94a3b8;
+    }
+    .term-tabs {
+      display: flex;
+      gap: 4px;
+    }
+    .term-tab {
+      background: transparent;
+      border: 1px solid transparent;
+      color: #64748b;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .term-tab.active {
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.1);
+      border-color: rgba(56, 189, 248, 0.2);
+    }
+    .term-body {
+      padding: 20px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: #e2e8f0;
+      min-height: 380px;
+      max-height: 520px;
+      overflow-y: auto;
+    }
+    .term-line {
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+    .term-prompt {
+      color: #38bdf8;
+    }
+    .term-cmd {
+      color: #f1f5f9;
+      font-weight: 600;
+    }
+    .term-input-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .term-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #f8fafc;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
+
+    /* DOWNLOAD / CONTACT HUB */
+    .contact-hub {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 32px;
+      margin-bottom: 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    @media (max-width: 768px) {
+      .contact-hub { grid-template-columns: 1fr; }
+    }
+    .hub-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .hub-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-family: var(--font-mono);
+      transition: all 0.15s ease;
+    }
+    .contact-item:hover {
+      border-color: var(--primary);
+      background: var(--bg-card-hover);
+    }
+    .download-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .download-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.15s ease;
+    }
+    .download-card:hover {
+      border-color: var(--primary);
+      transform: translateX(4px);
+    }
+    .dl-name { font-weight: 600; font-size: 0.92rem; }
+    .dl-sub { font-size: 0.75rem; color: var(--text-subtle); margin-top: 2px; }
+
+    /* FOOTER */
+    footer.site-footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      color: var(--text-subtle);
+      font-size: 0.82rem;
+      font-family: var(--font-mono);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAV -->
+  <header class="site-header" role="banner">
+    <div class="container nav-inner">
+      <a href="#top" class="brand" aria-label="Leonard Johnson Homepage">
+        <span>LEONARD JOHNSON</span>
+        <span class="brand-badge">SR. ENGINEER</span>
+      </a>
+      <nav class="nav-links" role="navigation" aria-label="Primary Navigation">
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button id="themeToggleBtn" class="btn btn-icon" aria-label="Toggle dark and light theme" title="Toggle Theme">
+          <span id="themeIcon">☀️</span>
+        </button>
+        <a href="assets/Leonard_Johnson_Resume.pdf" download="Leonard_Johnson_Resume.pdf" class="btn btn-primary" aria-label="Download ATS PDF Resume">
+          <span>Resume (PDF)</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="container" role="main">
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="status-pill">
+        <span class="pulse-dot"></span>
+        <span>OPEN FOR SENIOR ROLES & CONTRACTS</span>
+      </div>
+      <h1 id="hero-title" class="hero-title">High-Throughput Backends &amp; Autonomous Automation Systems</h1>
+      <p class="hero-subtitle">Senior Software &amp; Systems Automation Engineer</p>
+      <p class="hero-bio">
+        Specialized in engineering fault-tolerant asynchronous distributed backends, resilient browser automation engines,
+        and high-velocity analytical pipelines with sub-second response times. 6+ years shipping production infrastructure with zero-downtime reliability.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">Inspect Production Projects</a>
+        <button id="launchTerminalBtn" class="btn">💻 Launch Interactive Terminal</button>
+        <a href="assets/Leonard_Johnson_Resume.pdf" download class="btn">Download Resume (PDF)</a>
+        <a href="https://t.me/js122b" target="_blank" rel="noopener noreferrer" class="btn">Telegram (@js122b)</a>
+      </div>
+
+      <!-- METRIC STATS -->
+      <div class="metric-strip" aria-label="Key Engineering Metrics">
+        <div class="metric-card">
+          <div class="metric-val">99.98%</div>
+          <div class="metric-lbl">Automation Uptime</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val">450+ msg/s</div>
+          <div class="metric-lbl">Peak Asynchronous Throughput</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val">&lt;40ms</div>
+          <div class="metric-lbl">p95 Message Latency</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val">10x Speedup</div>
+          <div class="metric-lbl">DuckDB In-Memory Analytical Processing</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW TOGGLE & PROJECTS -->
+    <section id="projects" class="projects-section" aria-labelledby="projects-heading">
+      <div class="view-switch-bar">
+        <h2 id="projects-heading" class="section-heading">
+          <span>Featured Engineering Architecture</span>
+        </h2>
+        <div class="view-tabs" role="tablist" aria-label="View Modes">
+          <button id="viewBentoBtn" class="view-tab-btn active" role="tab" aria-selected="true">Bento Grid View</button>
+          <button id="viewTerminalBtn" class="view-tab-btn" role="tab" aria-selected="false">Interactive Terminal View</button>
+        </div>
+      </div>
+
+      <!-- INTERACTIVE TERMINAL CONTAINER -->
+      <div id="terminalContainer" class="terminal-container" role="region" aria-label="Interactive Developer Terminal">
+        <div class="terminal-header">
+          <div class="term-dots">
+            <span class="term-dot term-dot-red"></span>
+            <span class="term-dot term-dot-yellow"></span>
+            <span class="term-dot term-dot-green"></span>
+          </div>
+          <div class="term-title">bash &mdash; leonard@production-node: ~</div>
+          <div class="term-tabs">
+            <button class="term-tab active" data-file="overview.py">overview.py</button>
+            <button class="term-tab" data-file="stack.json">stack.json</button>
+            <button class="term-tab" data-file="metrics.sh">metrics.sh</button>
+          </div>
+        </div>
+        <div id="termBody" class="term-body" aria-live="polite">
+          <div class="term-line" style="color: #64748b;">// Welcome to Leonard Johnson's Interactive Terminal v3.8. Type 'help' or click tabs above.</div>
+          <div class="term-line"><span class="term-prompt">leonard@production-node:~$</span> <span class="term-cmd">python3 overview.py</span></div>
+          <div class="term-line" style="color: #94a3b8;">
+[SYS_INIT] Loading Senior Engineering Profile...
+Name       : Leonard Johnson
+Title      : Senior Software & Systems Automation Engineer
+Focus      : Asynchronous Backends, Bot Orchestration, Stealth Scraping, DuckDB Analytics
+Contacts   : a.t.87.14.912@gmail.com | Telegram: @js122b | GitHub: hiper728
+Status     : Ready for deployment.
+          </div>
+          <div class="term-line"><span class="term-prompt">leonard@production-node:~$</span> <span class="term-cmd">help</span></div>
+          <div class="term-line" style="color: #38bdf8;">
+Available commands:
+  projects    - Print production architecture portfolio
+  skills      - View categorized technical matrix
+  experience  - Show professional timeline
+  contact     - Display direct telegram and email links
+  curl resume - Download ATS-compliant resume PDF
+  clear       - Clear screen
+          </div>
+        </div>
+        <div class="term-input-row" style="padding: 0 20px 14px;">
+          <span class="term-prompt">leonard@production-node:~$</span>
+          <input type="text" id="termInput" class="term-input" placeholder="Type a command (e.g. 'projects', 'skills', 'contact') and press Enter..." aria-label="Terminal command input">
+        </div>
+      </div>
+
+      <!-- BENTO GRID PROJECTS -->
+      <div id="bentoContainer" class="bento-grid">
+        
+        <!-- CARD 1: OMNIBOT DISTRIBUTED ENGINE -->
+        <article class="bento-card card-col-8">
+          <div>
+            <div class="card-tag">Distributed Messaging &bull; High-Throughput</div>
+            <h3 class="card-title">OmniBot Orchestration Platform</h3>
+            <p class="card-desc">
+              High-concurrency bot platform coordinating 20+ specialized worker nodes across Telegram (aiogram 3.x) and Discord.
+              Features ACID SQLite WAL state machines, dynamic queue backpressure, and zero-drop transactional webhook dispatching.
+            </p>
+            <div class="arch-diagram">
+[Incoming Webhook] ---> [RateLimiter Token Bucket] ---> [Asyncio Worker Pool]
+                                                             |
+                                                             v
+[Admin Telemetry] <--- [WAL Transaction Engine] <--- [SQLite / Redis State]</div>
+            <div class="card-metrics">
+              <div>
+                <div class="metric-sub-val">450+ msg/s</div>
+                <div class="metric-sub-lbl">Peak Throughput</div>
+              </div>
+              <div>
+                <div class="metric-sub-val">&lt;40ms</div>
+                <div class="metric-sub-lbl">p95 Latency</div>
+              </div>
+              <div>
+                <div class="metric-sub-val">99.98%</div>
+                <div class="metric-sub-lbl">Reliability SLA</div>
+              </div>
+            </div>
+
+            <!-- SIMULATOR -->
+            <div class="sim-bench">
+              <div class="sim-header">
+                <span>⚡ Live Asynchronous Event Simulator</span>
+                <button id="simBotEventBtn" class="btn" style="padding: 4px 10px; font-size: 0.75rem;">Dispatch Test Message</button>
+              </div>
+              <div id="botSimOutput" class="sim-output">Ready. Click 'Dispatch Test Message' to execute live asynchronous dispatcher mock...</div>
+            </div>
+          </div>
+          <div class="tech-pill-list" style="margin-top: 16px;">
+            <span class="tech-pill">Python 3.13</span>
+            <span class="tech-pill">Asyncio</span>
+            <span class="tech-pill">aiogram 3.x</span>
+            <span class="tech-pill">SQLite WAL</span>
+            <span class="tech-pill">Docker</span>
+            <span class="tech-pill">Redis</span>
+          </div>
+        </article>
+
+        <!-- CARD 2: STEALTH SCRAPER & WEB SENTINEL -->
+        <article class="bento-card card-col-4">
+          <div>
+            <div class="card-tag">Web Automation &bull; Anti-Detection</div>
+            <h3 class="card-title">Sentinel Stealth Scraper</h3>
+            <p class="card-desc">
+              Headless browser automation system leveraging Chrome DevTools Protocol (CDP) and Playwright.
+              Monitors 50,000+ endpoints daily with structural DOM diffing and cryptographic content hashing.
+            </p>
+            <div class="card-metrics">
+              <div>
+                <div class="metric-sub-val">94%</div>
+                <div class="metric-sub-lbl">Block Reduction</div>
+              </div>
+              <div>
+                <div class="metric-sub-val">50K+</div>
+                <div class="metric-sub-lbl">Daily Endpoints</div>
+              </div>
+            </div>
+          </div>
+          <div class="tech-pill-list">
+            <span class="tech-pill">Playwright</span>
+            <span class="tech-pill">CDP</span>
+            <span class="tech-pill">DOM Diffing</span>
+            <span class="tech-pill">Session Cache</span>
+          </div>
+        </article>
+
+        <!-- CARD 3: DUCKDB ANALYTICAL PIPELINE -->
+        <article class="bento-card card-col-6">
+          <div>
+            <div class="card-tag">Big Data &bull; High Performance</div>
+            <h3 class="card-title">DuckDB In-Process Data Engine</h3>
+            <p class="card-desc">
+              Zero-overhead vectorized analytical processing pipeline running SQL directly over multi-gigabyte CSV, Parquet, and JSON files.
+              Achieves sub-second aggregation times without requiring cumbersome standalone database setup.
+            </p>
+            <div class="sim-bench">
+              <div class="sim-header">
+                <span>📊 In-Process SQL Aggregation Bench</span>
+                <button id="simDuckDbBtn" class="btn" style="padding: 4px 10px; font-size: 0.75rem;">Run 1.2M Record Query</button>
+              </div>
+              <div id="duckSimOutput" class="sim-output">Click 'Run 1.2M Record Query' to benchmark analytical query performance...</div>
+            </div>
+          </div>
+          <div class="tech-pill-list" style="margin-top: 14px;">
+            <span class="tech-pill">DuckDB</span>
+            <span class="tech-pill">Parquet</span>
+            <span class="tech-pill">SQL</span>
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">Zstandard</span>
+          </div>
+        </article>
+
+        <!-- CARD 4: DEVOPS & INFRASTRUCTURE AUTOPILOT -->
+        <article class="bento-card card-col-6">
+          <div>
+            <div class="card-tag">Linux &bull; Container Orchestration</div>
+            <h3 class="card-title">Infrastructure &amp; CI/CD Autopilot</h3>
+            <p class="card-desc">
+              Production server hardening, multi-stage Docker build pipelines, and automated zero-downtime blue/green deployments.
+              Automated Nginx reverse proxy routing, SSL auto-renewal, and Linux systemd supervision watchdogs.
+            </p>
+            <div class="card-metrics">
+              <div>
+                <div class="metric-sub-val">Zero Downtime</div>
+                <div class="metric-sub-lbl">Rolling Deployments</div>
+              </div>
+              <div>
+                <div class="metric-sub-val">&lt;2 min</div>
+                <div class="metric-sub-lbl">CI/CD Build &amp; Deploy</div>
+              </div>
+            </div>
+          </div>
+          <div class="tech-pill-list" style="margin-top: 14px;">
+            <span class="tech-pill">Docker Multi-Stage</span>
+            <span class="tech-pill">GitHub Actions</span>
+            <span class="tech-pill">Nginx</span>
+            <span class="tech-pill">Systemd</span>
+            <span class="tech-pill">Ubuntu/Debian</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- TECHNICAL SKILLS MATRIX -->
+    <section id="skills" class="skills-matrix" aria-labelledby="skills-heading">
+      <h2 id="skills-heading" class="section-heading">Technical Matrix &amp; Stack</h2>
+      <div class="skills-grid">
+        
+        <div class="skill-category-card">
+          <h3 class="skill-cat-title">Languages &amp; Runtimes</h3>
+          <ul class="skill-list">
+            <li class="skill-item"><span class="skill-name">Python 3.13</span> <span class="skill-badge">Asyncio / CPython</span></li>
+            <li class="skill-item"><span class="skill-name">SQL</span> <span class="skill-badge">Postgres / SQLite</span></li>
+            <li class="skill-item"><span class="skill-name">Bash / Shell</span> <span class="skill-badge">Linux Scripts</span></li>
+            <li class="skill-item"><span class="skill-name">Go</span> <span class="skill-badge">CLI / Microservices</span></li>
+            <li class="skill-item"><span class="skill-name">TypeScript / JS</span> <span class="skill-badge">Node.js Runtime</span></li>
+          </ul>
+        </div>
+
+        <div class="skill-category-card">
+          <h3 class="skill-cat-title">Frameworks &amp; Automation</h3>
+          <ul class="skill-list">
+            <li class="skill-item"><span class="skill-name">FastAPI</span> <span class="skill-badge">REST / OpenAPI</span></li>
+            <li class="skill-item"><span class="skill-name">aiogram 3.x</span> <span class="skill-badge">Telegram Platform</span></li>
+            <li class="skill-item"><span class="skill-name">discord.py</span> <span class="skill-badge">Discord APIs</span></li>
+            <li class="skill-item"><span class="skill-name">Playwright / CDP</span> <span class="skill-badge">Browser Automation</span></li>
+            <li class="skill-item"><span class="skill-name">SQLAlchemy / Pydantic</span> <span class="skill-badge">v2 Type Validation</span></li>
+          </ul>
+        </div>
+
+        <div class="skill-category-card">
+          <h3 class="skill-cat-title">Databases &amp; Storage</h3>
+          <ul class="skill-list">
+            <li class="skill-item"><span class="skill-name">PostgreSQL</span> <span class="skill-badge">ACID / Indexes</span></li>
+            <li class="skill-item"><span class="skill-name">DuckDB</span> <span class="skill-badge">In-Memory Analytical</span></li>
+            <li class="skill-item"><span class="skill-name">SQLite (WAL)</span> <span class="skill-badge">High Concurrency</span></li>
+            <li class="skill-item"><span class="skill-name">Redis</span> <span class="skill-badge">Pub/Sub &amp; Caching</span></li>
+            <li class="skill-item"><span class="skill-name">Alembic</span> <span class="skill-badge">Schema Migrations</span></li>
+          </ul>
+        </div>
+
+        <div class="skill-category-card">
+          <h3 class="skill-cat-title">DevOps &amp; Infrastructure</h3>
+          <ul class="skill-list">
+            <li class="skill-item"><span class="skill-name">Linux OS</span> <span class="skill-badge">Debian / Ubuntu / Arch</span></li>
+            <li class="skill-item"><span class="skill-name">Docker &amp; Compose</span> <span class="skill-badge">Multi-Stage Builds</span></li>
+            <li class="skill-item"><span class="skill-name">Nginx / Caddy</span> <span class="skill-badge">Reverse Proxy &amp; SSL</span></li>
+            <li class="skill-item"><span class="skill-name">GitHub Actions</span> <span class="skill-badge">CI/CD Pipelines</span></li>
+            <li class="skill-item"><span class="skill-name">Systemd Watchdogs</span> <span class="skill-badge">Service Supervision</span></li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- WORK EXPERIENCE -->
+    <section id="experience" class="exp-section" aria-labelledby="experience-heading">
+      <h2 id="experience-heading" class="section-heading">Career Experience</h2>
+      <div class="timeline">
+        
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div class="exp-title-row">
+            <h3 class="exp-role">Lead Systems &amp; Automation Engineer</h3>
+            <span class="exp-period">2022 &ndash; Present</span>
+          </div>
+          <div class="exp-domain">Distributed Systems, Automation Platforms &amp; Infrastructure</div>
+          <ul class="exp-bullets">
+            <li class="exp-bullet">Architected and deployed an asynchronous messaging engine coordinating 20+ specialized worker nodes, handling 450+ msg/sec peak throughput with sub-40ms latency and 99.98% reliability.</li>
+            <li class="exp-bullet">Engineered a resilient headless browser scraping engine using Playwright and CDP, monitoring 50,000+ endpoints daily while reducing anti-bot blocks by 94% through session persistence.</li>
+            <li class="exp-bullet">Built in-process analytical data pipelines using DuckDB and Polars, accelerating batch report query processing 10x over relational databases.</li>
+            <li class="exp-bullet">Standardized containerized production microservices with optimized multi-stage Dockerfiles and established automated GitHub Actions CI/CD deployment to Linux servers behind Nginx.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div class="exp-title-row">
+            <h3 class="exp-role">Senior Backend Engineer</h3>
+            <span class="exp-period">2019 &ndash; 2022</span>
+          </div>
+          <div class="exp-domain">High-Scale APIs, Automation &amp; Database Optimization</div>
+          <ul class="exp-bullets">
+            <li class="exp-bullet">Built robust REST API services and asynchronous background workers using FastAPI, Pydantic, and PostgreSQL serving over 1M monthly requests.</li>
+            <li class="exp-bullet">Implemented automated database backup, migration (Alembic), and point-in-time recovery workflows across distributed SQLite and PostgreSQL databases.</li>
+            <li class="exp-bullet">Spearheaded automated testing strategies with pytest achieving 92% test coverage across core messaging and transaction services.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- DOWNLOAD & CONTACT HUB -->
+    <section id="contact" class="contact-hub" aria-labelledby="contact-heading">
+      <div>
+        <h2 id="contact-heading" class="hub-title">Get in Touch</h2>
+        <p class="hub-desc">Direct communications for engineering inquiries, senior software opportunities, and contract collaborations.</p>
+        <div class="contact-list">
+          <a href="https://t.me/js122b" target="_blank" rel="noopener noreferrer" class="contact-item">
+            <span>✈️</span>
+            <span>Telegram: @js122b</span>
+          </a>
+          <a href="mailto:a.t.87.14.912@gmail.com" class="contact-item">
+            <span>✉️</span>
+            <span>Email: a.t.87.14.912@gmail.com</span>
+          </a>
+          <a href="https://github.com/hiper728" target="_blank" rel="noopener noreferrer" class="contact-item">
+            <span>🐙</span>
+            <span>GitHub: github.com/hiper728</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="hub-title">Download Official Resumes</h3>
+        <p class="hub-desc">Verified ATS-compliant resumes formatted for corporate and technical recruiting pipelines.</p>
+        <div class="download-cards">
+          <a href="assets/Leonard_Johnson_Resume.pdf" download="Leonard_Johnson_Resume.pdf" class="download-card">
+            <div>
+              <div class="dl-name">📄 Silicon Valley ATS Resume (PDF)</div>
+              <div class="dl-sub">Standard single-column format, high parseability rate (Greenhouse/Lever)</div>
+            </div>
+            <span class="btn" style="padding: 4px 10px; font-size: 0.75rem;">Download</span>
+          </a>
+          <a href="assets/Leonard_Johnson_Resume.docx" download="Leonard_Johnson_Resume.docx" class="download-card">
+            <div>
+              <div class="dl-name">📝 Microsoft Word Resume (.docx)</div>
+              <div class="dl-sub">Editable clean document typography (Calibri/Arial standard)</div>
+            </div>
+            <span class="btn" style="padding: 4px 10px; font-size: 0.75rem;">Download</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer container" role="contentinfo">
+    <div>&copy; 2026 Leonard Johnson &bull; Built with clean semantic code &bull; Hosted on GitHub Pages</div>
+    <div>hiper728.github.io</div>
+  </footer>
+
+  <!-- INTERACTIVE JS -->
+  <script>
+    // --- THEME TOGGLE ---
+    const themeBtn = document.getElementById('themeToggleBtn');
+    const themeIcon = document.getElementById('themeIcon');
+    const root = document.documentElement;
+
+    function setTheme(theme) {
+      if (theme === 'light') {
+        root.setAttribute('data-theme', 'light');
+        themeIcon.textContent = '🌙';
+        localStorage.setItem('theme', 'light');
+      } else {
+        root.removeAttribute('data-theme');
+        themeIcon.textContent = '☀️';
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
+
+    themeBtn.addEventListener('click', () => {
+      const cur = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+      setTheme(cur === 'light' ? 'dark' : 'light');
+    });
+
+    // --- VIEW TOGGLES (BENTO VS TERMINAL) ---
+    const viewBentoBtn = document.getElementById('viewBentoBtn');
+    const viewTerminalBtn = document.getElementById('viewTerminalBtn');
+    const launchTerminalBtn = document.getElementById('launchTerminalBtn');
+    const bentoContainer = document.getElementById('bentoContainer');
+    const terminalContainer = document.getElementById('terminalContainer');
+    const termInput = document.getElementById('termInput');
+    const termBody = document.getElementById('termBody');
+
+    function showBento() {
+      viewBentoBtn.classList.add('active');
+      viewTerminalBtn.classList.remove('active');
+      bentoContainer.style.display = 'grid';
+      terminalContainer.style.display = 'none';
+      viewBentoBtn.setAttribute('aria-selected', 'true');
+      viewTerminalBtn.setAttribute('aria-selected', 'false');
+    }
+
+    function showTerminal() {
+      viewBentoBtn.classList.remove('active');
+      viewTerminalBtn.classList.add('active');
+      bentoContainer.style.display = 'none';
+      terminalContainer.style.display = 'block';
+      viewBentoBtn.setAttribute('aria-selected', 'false');
+      viewTerminalBtn.setAttribute('aria-selected', 'true');
+      terminalContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => termInput.focus(), 300);
+    }
+
+    viewBentoBtn.addEventListener('click', showBento);
+    viewTerminalBtn.addEventListener('click', showTerminal);
+    launchTerminalBtn.addEventListener('click', showTerminal);
+
+    // --- TERMINAL REPL COMMANDS ---
+    const terminalCommands = {
+      help: () => `Available commands:
+  projects    - Print production architecture portfolio
+  skills      - View categorized technical matrix
+  experience  - Show professional timeline
+  contact     - Display direct telegram and email links
+  curl resume - Download ATS-compliant resume PDF
+  clear       - Clear screen`,
+      projects: () => `[PORTFOLIO SUMMARY]
+1. OmniBot Platform     : 450+ msg/sec peak, aiogram 3.x, SQLite WAL, Redis queue.
+2. Sentinel Scraper     : 50,000+ endpoints/day, Playwright CDP, 94% block reduction.
+3. DuckDB Data Engine   : Sub-second analytical SQL on multi-GB Parquet/CSV.
+4. CI/CD Autopilot      : Multi-stage Docker, Nginx reverse proxy, Zero-downtime deploy.`,
+      skills: () => `[TECHNICAL MATRIX]
+Languages   : Python 3.13, SQL, Bash/Shell, Go, TypeScript/Node.js
+Frameworks  : FastAPI, aiogram 3.x, discord.py, Playwright, SQLAlchemy, Pydantic v2
+Databases   : PostgreSQL, DuckDB, SQLite (WAL mode), Redis
+DevOps      : Docker, Nginx, GitHub Actions, Linux Systemd, SSL/TLS`,
+      experience: () => `[CAREER TIMELINE]
+2022 - Present : Lead Systems & Automation Engineer (Distributed Systems & Bots)
+2019 - 2022    : Senior Backend Engineer (FastAPI, PostgreSQL, Scraping Systems)`,
+      contact: () => `[DIRECT CONTACT]
+Telegram : @js122b  (https://t.me/js122b)
+Email    : a.t.87.14.912@gmail.com
+GitHub   : https://github.com/hiper728`,
+      'curl resume': () => {
+        const a = document.createElement('a');
+        a.href = 'assets/Leonard_Johnson_Resume.pdf';
+        a.download = 'Leonard_Johnson_Resume.pdf';
+        a.click();
+        return `[HTTP 200 OK] Initiated download of Leonard_Johnson_Resume.pdf...`;
+      },
+      clear: () => {
+        termBody.innerHTML = '';
+        return '';
+      }
+    };
+
+    termInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const raw = termInput.value.trim().toLowerCase();
+        if (!raw) return;
+
+        const cmdLine = document.createElement('div');
+        cmdLine.className = 'term-line';
+        cmdLine.innerHTML = `<span class="term-prompt">leonard@production-node:~$</span> <span class="term-cmd">${escapeHtml(termInput.value)}</span>`;
+        termBody.appendChild(cmdLine);
+
+        let out = '';
+        if (terminalCommands[raw]) {
+          out = terminalCommands[raw]();
+        } else {
+          out = `bash: command not found: ${raw}. Type 'help' for available commands.`;
+        }
+
+        if (out) {
+          const respLine = document.createElement('div');
+          respLine.className = 'term-line';
+          respLine.style.color = '#94a3b8';
+          respLine.style.whiteSpace = 'pre-wrap';
+          respLine.textContent = out;
+          termBody.appendChild(respLine);
+        }
+
+        termInput.value = '';
+        termBody.scrollTop = termBody.scrollHeight;
+      }
+    });
+
+    function escapeHtml(text) {
+      return text.replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' })[m]);
+    }
+
+    // --- TERMINAL TAB SWITCHING ---
+    const fileContents = {
+      'overview.py': `import sys\n\nengineer = {\n    "name": "Leonard Johnson",\n    "title": "Senior Software & Automation Engineer",\n    "uptime": "99.98%",\n    "languages": ["Python", "SQL", "Bash", "Go", "TypeScript"],\n    "status": "Available for high-impact contracts and senior roles"\n}\n\nprint(f"Engineering profile initialized: {engineer['name']}")`,
+      'stack.json': `{\n  "runtime": "Python 3.13 Asyncio",\n  "database": "PostgreSQL + DuckDB + SQLite WAL",\n  "orchestration": "Docker + Linux Systemd + Nginx",\n  "ci_cd": "GitHub Actions",\n  "telemetry": "Active Prometheus / Custom Watchdog"\n}`,
+      'metrics.sh': `#!/usr/bin/env bash\necho "Current node status: HEALTHY"\necho "Peak message throughput: 450 msg/sec"\necho "Scraper endpoint coverage: 50,000+ daily targets"\necho "Memory footprint: Optimized with CPython __slots__"`
+    };
+
+    document.querySelectorAll('.term-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.term-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const fname = tab.getAttribute('data-file');
+        const code = fileContents[fname] || '';
+        const block = document.createElement('div');
+        block.className = 'term-line';
+        block.style.color = '#38bdf8';
+        block.style.whiteSpace = 'pre-wrap';
+        block.textContent = `// Displaying: ${fname}\n` + code;
+        termBody.appendChild(block);
+        termBody.scrollTop = termBody.scrollHeight;
+      });
+    });
+
+    // --- SIMULATOR 1: BOT EVENT SIMULATOR ---
+    const botBtn = document.getElementById('simBotEventBtn');
+    const botOut = document.getElementById('botSimOutput');
+    let msgCounter = 1042;
+
+    botBtn.addEventListener('click', () => {
+      msgCounter++;
+      botOut.textContent = `[T+0ms] Ingesting Telegram payload #TG-${msgCounter}...\n` +
+                           `[T+8ms] RateLimiter: Token acquired (Bucket: 198/200 tokens available)\n` +
+                           `[T+19ms] Worker #3 dispatched task to SQLite WAL buffer\n` +
+                           `[T+27ms] Transaction committed. Acknowledged to Telegram API [Status: 200 OK] (Total latency: 27.4ms)`;
+    });
+
+    // --- SIMULATOR 2: DUCKDB QUERY SIMULATOR ---
+    const duckBtn = document.getElementById('simDuckDbBtn');
+    const duckOut = document.getElementById('duckSimOutput');
+
+    duckBtn.addEventListener('click', () => {
+      duckOut.textContent = `Executing: SELECT region, COUNT(*), SUM(sales), AVG(latency) FROM 'events_1.2M.parquet' GROUP BY 1;\n` +
+                            `Scan: 1,200,000 rows in memory using DuckDB vectorized pipeline\n` +
+                            `Result: 4 groups aggregated in 14.18ms (Throughput: 84.6M rows/sec) [Memory: 42.1 MB]`;
+    });
+  </script>
+</body>
+</html>
